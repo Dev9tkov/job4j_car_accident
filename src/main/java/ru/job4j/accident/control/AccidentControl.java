@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 
 import ru.job4j.accident.model.Accident;
-import ru.job4j.accident.repository.AccidentMem;
+import ru.job4j.accident.repository.AccidentJdbcTemplate;
 
 @Controller
 public class AccidentControl {
 
-    private AccidentMem accidents;
+    private AccidentJdbcTemplate accidents;
 
-    public AccidentControl(AccidentMem accidents) {
+    public AccidentControl(AccidentJdbcTemplate accidents) {
         this.accidents = accidents;
     }
 
@@ -39,7 +39,7 @@ public class AccidentControl {
 
     @PostMapping("/change")
     public String editAccident(@ModelAttribute("accident") Accident accident) {
-        accidents.create(accident);
+        accidents.update(accident);
         return "redirect:/";
     }
 }

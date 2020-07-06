@@ -30,10 +30,10 @@
         <tbody>
         <c:forEach items="${accidents}" var="accident">
             <tr>
-                <td>${accident.id}</td>
-                <td>${accident.name}</td>
-                <td>${accident.text}</td>
-                <td>${accident.address}
+                <td><c:out value="${accident.id}"/></td>
+                <td><c:out value="${accident.name}"/></td>
+                <td><c:out value="${accident.text}"/></td>
+                <td><c:out value="${accident.address}"/>
                     <a href="<c:url value="/edit?id=${accident.id}"/>">Редактировать</a>
                 </td>
             </tr>
