@@ -18,6 +18,9 @@
 <h2 style="text-align: center">Accidents</h2>
 
 <div class="card-body">
+    <div style="position: ">
+        Login as : ${user.username}
+    </div>
     <table class="table">
         <thead>
         <tr>
