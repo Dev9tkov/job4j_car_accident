@@ -8,14 +8,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 
 import ru.job4j.accident.model.Accident;
+import ru.job4j.accident.repository.AccidentHibernate;
 import ru.job4j.accident.repository.AccidentJdbcTemplate;
 
 @Controller
 public class AccidentControl {
 
-    private AccidentJdbcTemplate accidents;
+    private AccidentHibernate accidents;
 
-    public AccidentControl(AccidentJdbcTemplate accidents) {
+    public AccidentControl(AccidentHibernate accidents) {
         this.accidents = accidents;
     }
 
@@ -26,13 +27,13 @@ public class AccidentControl {
 
     @PostMapping("/save")
     public String save(@ModelAttribute("accident") Accident accident) {
-        accidents.create(accident);
+        accidents.save(accident);
         return "redirect:/";
     }
 
     @GetMapping("/edit")
     public String edit(@RequestParam("id") int id, Model model) {
-        Accident accident = accidents.findById(id);
+        Accident accident = accidents.findById(id).get();
         model.addAttribute("accident", accident);
         return "accident/edit";
     }
